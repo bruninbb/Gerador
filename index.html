@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Gerador de Key - THE</title>
+<style>
+body{
+  background:black;
+  color:white;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  border:2px solid #00e5ff;
+  box-shadow:0 0 20px #00e5ff;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+button{
+  padding:10px 20px;
+  background:linear-gradient(45deg,#8a2be2,#00e5ff);
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+.key{
+  margin-top:10px;
+  color:#00e5ff;
+  word-break:break-all;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>GERADOR DE KEY</h2>
+  <button onclick="gerar()">GERAR KEY (24H)</button>
+  <div class="key" id="key"></div>
+</div>
+
+<script>
+function gerar(){
+  const key = "THE-" + Math.random().toString(36).substr(2,5).toUpperCase()
+                     + "-" + Math.random().toString(36).substr(2,5).toUpperCase();
+
+  const exp = Date.now() + (24 * 60 * 60 * 1000); // 24h
+
+  localStorage.setItem("THE_KEY", key);
+  localStorage.setItem("THE_EXP", exp);
+
+  document.getElementById("key").innerText = "KEY: " + key;
+  alert("✅ Key registrada com sucesso!");
+}
+</script>
+
+</body>
+</html>
